@@ -13,7 +13,7 @@ namespace SpotifyLike.Domain.Core.ValueObject
         public static implicit operator decimal(Monetario d) => d.Valor;
         public static implicit operator Monetario(decimal valor) => new Monetario(valor);
 
-        public Monetario(int valor)
+        public Monetario(Decimal valor)
         {
             if (valor < 0)
                 throw new ArgumentException("Valor monetário não pode ser negativo");

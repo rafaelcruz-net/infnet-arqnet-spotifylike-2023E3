@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Conta\Agreggates\" />
     <Folder Include="Notificacao\" />
   </ItemGroup>
 

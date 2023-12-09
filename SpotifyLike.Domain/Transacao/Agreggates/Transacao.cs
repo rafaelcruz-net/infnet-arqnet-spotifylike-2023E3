@@ -1,5 +1,6 @@
 ﻿using SpotifyLike.Domain.Core.ValueObject;
 using SpotifyLike.Domain.Streaming.ValueObject;
+using SpotifyLike.Domain.Transacao.ValueObject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,6 @@ namespace SpotifyLike.Domain.Transacao.Agreggates
         public DateTime DtTransacao { get; set; }
         public Monetario Valor { get; set; }
         public String Descricao { get; set; }
+        public Merchant Merchant { get; set; }
     }
 }
