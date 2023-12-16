@@ -1,4 +1,5 @@
 ﻿using SpotifyLike.Domain.Core.ValueObject;
+using SpotifyLike.Domain.Notificacao;
 using SpotifyLike.Domain.Streaming.Aggregates;
 using SpotifyLike.Domain.Transacao.Agreggates;
 using SpotifyLike.Domain.Transacao.ValueObject;
@@ -26,6 +27,7 @@ namespace SpotifyLike.Domain.Conta.Agreggates
         public List<Cartao> Cartoes { get; set; } = new List<Cartao>();
         public List<Assinatura> Assinaturas { get; set; } = new List<Assinatura>();
         public List<Playlist> Playlists { get; set; } = new List<Playlist>();
+        public List<Notificacao.Notificacao> Notificacoes { get; set; } = new List<Notificacao.Notificacao>();
 
 
         public void CriarConta(string nome, string email, string senha, DateTime dtNascimento ,Plano plano, Cartao cartao)
