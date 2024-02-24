@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Spotify.Application.Conta;
 using Spotify.Application.Conta.Profile;
+using Spotify.Application.Streaming;
 using SpotifyLike.Repository;
 using SpotifyLike.Repository.Repository;
 
@@ -26,9 +27,11 @@ builder.Services.AddAutoMapper(typeof(UsuarioProfile).Assembly);
 //Repositories
 builder.Services.AddScoped<UsuarioRepository>();
 builder.Services.AddScoped<PlanoRepository>();
+builder.Services.AddScoped<BandaRepository>();
 
 //Services
 builder.Services.AddScoped<UsuarioService>();
+builder.Services.AddScoped<BandaService>();
 
 
 var app = builder.Build();
