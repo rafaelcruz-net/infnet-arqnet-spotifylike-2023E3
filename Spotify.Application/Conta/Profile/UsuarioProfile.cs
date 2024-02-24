@@ -13,14 +13,12 @@ namespace Spotify.Application.Conta.Profile
     {
         public UsuarioProfile() 
         {
-            CreateMap<UsuarioDto, Usuario>();
-            CreateMap<Usuario, UsuarioDto>();
+            CreateMap<UsuarioDto, Usuario>()
+                .ReverseMap();
 
             CreateMap<CartaoDto, Cartao>()
-                .ForMember(x => x.Limite.Valor, m => m.MapFrom(f => f.Limite));
-            
-            CreateMap<Cartao, CartaoDto>();
-
+                .ForMember(x => x.Limite.Valor, m => m.MapFrom(f => f.Limite))
+                .ReverseMap();
         }
     }
 }
