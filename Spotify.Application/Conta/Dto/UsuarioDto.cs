@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Spotify.Application.Conta.Dto
@@ -20,11 +21,12 @@ namespace Spotify.Application.Conta.Dto
         public string Email { get; set; }
 
         [Required]
+        [JsonIgnore()]
         public string Senha { get; set; }
 
         [Required]
         public DateTime DtNascimento { get; set; }
-        
+
         public Guid PlanoId { get; set; }
 
 

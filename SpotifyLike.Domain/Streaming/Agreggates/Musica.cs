@@ -14,7 +14,7 @@ namespace SpotifyLike.Domain.Streaming.Aggregates
         public String Nome { get; set; }
         public Duracao Duracao { get; set; }
 
-        public List<Playlist> Playlists { get; set; } = new List<Playlist>();
+        public virtual IList<Playlist> Playlists { get; set; } = new List<Playlist>();
 
     }
 }
