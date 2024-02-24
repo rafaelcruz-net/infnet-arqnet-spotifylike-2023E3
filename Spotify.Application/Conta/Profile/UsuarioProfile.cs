@@ -17,7 +17,7 @@ namespace Spotify.Application.Conta.Profile
                 .ReverseMap();
 
             CreateMap<CartaoDto, Cartao>()
-                .ForMember(x => x.Limite.Valor, m => m.MapFrom(f => f.Limite))
+                .ForPath(x => x.Limite.Valor, m => m.MapFrom(f => f.Limite))
                 .ReverseMap();
         }
     }
