@@ -6,6 +6,7 @@ import { Banda } from '../model/banda';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { Router } from '@angular/router';
 
 
 
@@ -20,13 +21,17 @@ export class HomeComponent implements OnInit {
 
   bandas = null;
 
-  constructor(private bandaService: BandaService) {
+  constructor(private bandaService: BandaService, private router: Router) {
   }
   ngOnInit(): void {
     this.bandaService.getBanda().subscribe(response => {
       console.log(response);
       this.bandas = response as any;
     });
+  }
+
+  public goToDetail(item:Banda) {
+    this.router.navigate(["detail", item.id]);
   }
 
 }

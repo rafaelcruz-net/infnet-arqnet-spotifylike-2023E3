@@ -16,7 +16,7 @@
             <p>{{item.descricao}}</p>
           </mat-card-content>
           <mat-card-actions>
-            <button mat-button>VER DETALHES</button>
+            <button mat-button (click)="goToDetail(item);">VER DETALHES</button>
           </mat-card-actions>
         </mat-card>
       </div>
