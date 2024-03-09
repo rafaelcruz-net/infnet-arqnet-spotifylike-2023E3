@@ -1,16 +1,24 @@
-<mat-card class="example-card" *ngFor="let item of bandas">
-    <mat-card-header>
-      <mat-card-title>{{item.nome}}</mat-card-title>
-    </mat-card-header>
-    <img mat-card-image [src]="item.backdrop" >
-    <mat-card-content>
-      <p>
-        {{item.descricao}}
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>Detalhes</button>
-    </mat-card-actions>
-</mat-card>
-
-  
+<div class="content">
+    <div fxLayout="row wrap" fxLayoutGap="16px grid">
+      <div fxFlex="50%"
+           fxFlex.xs="100%"
+           fxFlex.sm="33%" *ngFor="let item of bandas">
+        <mat-card class="mat-elevation-z4">
+          <mat-card-header>
+            <mat-card-title>{{item.nome}}</mat-card-title>
+          </mat-card-header>
+          <img
+            mat-card-image
+            [src]="item.backdrop"
+            height="400px"
+          />
+          <mat-card-content>
+            <p>{{item.descricao}}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button>VER DETALHES</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>

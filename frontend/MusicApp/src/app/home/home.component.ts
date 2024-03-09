@@ -5,12 +5,14 @@ import { BandaService } from '../services/banda.service';
 import { Banda } from '../model/banda';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { FlexLayoutModule } from "@angular/flex-layout";
+
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MatButtonModule, MatCardModule, HttpClientModule, CommonModule],
+  imports: [MatButtonModule, MatCardModule, HttpClientModule, CommonModule, FlexLayoutModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

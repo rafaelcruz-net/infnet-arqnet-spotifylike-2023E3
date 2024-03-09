@@ -1,9 +1,17 @@
-.example-card {
-    max-width: 400px;
+mat-toolbar {
+    justify-content: space-between;
   }
   
-  .example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
+  .content {
+    padding: 16px;
   }
   
+  .content > mat-card {
+    margin-bottom: 16px;
+    max-width: 200px;
+  }
+  
+  .column-label {
+    margin-right: 8px;
+    font-size: 1rem;
+  }
