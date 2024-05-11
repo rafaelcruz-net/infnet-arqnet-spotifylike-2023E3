@@ -1,1 +1,31 @@
-﻿<p>Aqui é a view do usuário</p>
+﻿@model IEnumerable<Spotify.Application.Admin.Dto.UsuarioAdminDto>
+
+<div>
+    <button type="button" class="btn btn-primary">Criar um novo usuário</button>
+</div>
+<div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>Nome</td>
+                <td>Email</td>
+                <td>Perfil</td>
+                <td>Ações</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Nome</td>
+                    <td>@item.Email</td>
+                    <td>(@item.Perfil == 1 ? "Full" : "Normal")</td>
+                    <td></td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
