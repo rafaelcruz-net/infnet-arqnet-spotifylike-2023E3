@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Spotify.Application.Admin;
+using Spotify.Application.Admin.Dto;
 
 namespace SpotifyLike.Admin.Controllers
 {
@@ -16,6 +17,22 @@ namespace SpotifyLike.Admin.Controllers
         {
             var result = this.usuarioAdminService.ObterTodos();
             return View(result);
+        }
+
+        public IActionResult Criar()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Salvar(UsuarioAdminDto dto)
+        {
+            if (ModelState.IsValid == false)
+                return View("Criar");
+
+            this.usuarioAdminService.Salvar(dto);
+
+            return RedirectToAction("Index");
         }
     }
 }

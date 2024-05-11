@@ -1,0 +1,42 @@
+﻿@model Spotify.Application.Admin.Dto.UsuarioAdminDto;
+
+
+<form method="post" asp-controller="User" asp-action="Salvar">
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Nome</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(x => x.Nome, new { @class = "form-control" })
+            <span class="form-field-invalid" asp-validation-for="Nome"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(x => x.Email, new { @class = "form-control"})
+            <span class="form-field-invalid" asp-validation-for="Email"></span>
+        </div>
+        
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Password</label>
+        <div class="col-sm-10">
+            @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+            <span class="form-field-invalid" asp-validation-for="Password"></span>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Perfil</label>
+        <div class="col-sm-10">
+            <select class="form-select" asp-for="Perfil">
+                <option selected value="">Selecione</option>
+                <option value="1">Acesso Total</option>
+                <option value="2">Normal</option>
+            </select>
+            <span class="form-field-invalid" asp-validation-for="Perfil"></span>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Criar</button>
+</form>

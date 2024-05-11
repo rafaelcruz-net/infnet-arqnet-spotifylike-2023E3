@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Spotify.Application.Admin.Dto.UsuarioAdminDto>
 
 <div>
-    <button type="button" class="btn btn-primary">Criar um novo usuário</button>
+  <a class="btn btn-primary" role="button" href="/User/Criar">Criar Usuário</a>
 </div>
 <div>
     <table class="table table-hover">
@@ -21,7 +21,7 @@
                     <td>@item.Id</td>
                     <td>@item.Nome</td>
                     <td>@item.Email</td>
-                    <td>(@item.Perfil == 1 ? "Full" : "Normal")</td>
+                    <td>@(item.Perfil == 1 ? "Full" : "Normal")</td>
                     <td></td>
                 </tr>
             }
