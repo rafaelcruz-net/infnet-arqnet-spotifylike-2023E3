@@ -1,0 +1,24 @@
+<div class="example-container" style="margin-left: 15px;">
+    <mat-error *ngIf="errorMessage">{{errorMessage}}</mat-error>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput
+             placeholder="Informe a email..."
+             [formControl]="email"
+             required>
+      <mat-error *ngIf="email.invalid">Email inválido</mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+        <mat-label>Senha</mat-label>
+        <input matInput
+               type="password"
+               placeholder="Informe a senha..."
+               [formControl]="senha"
+               required>
+        <mat-error *ngIf="senha.invalid">Senha inválida</mat-error>        
+    </mat-form-field>
+    <br />
+    <button mat-raised-button color="primary" (click)="login();">Login</button>
+
+</div>

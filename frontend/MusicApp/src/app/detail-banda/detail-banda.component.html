@@ -1,1 +1,17 @@
-<p>detail-banda works!</p>
+<div *ngIf="banda != undefined">
+    <span>Nome: {{banda.nome}}</span>
+    <br />
+    <span>Descrição: {{banda.descricao}}</span>
+    <img [src]="banda.backdrop">
+</div>
+
+<mat-accordion >
+    <mat-expansion-panel hideToggle *ngFor="let album of albuns" >
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+               Album: {{album.nome}}
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p *ngFor="let music of album.musicas">Musica: {{music.nome}}</p>
+    </mat-expansion-panel>
+</mat-accordion>
