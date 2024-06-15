@@ -21,7 +21,6 @@ namespace SpotifyLike.Api.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
         public IActionResult GetBandas()
         {
             var result = this._bandaService.Obter();
