@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SpotifyLike.Admin.Models;
 using System.Diagnostics;
 
 namespace SpotifyLike.Admin.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
