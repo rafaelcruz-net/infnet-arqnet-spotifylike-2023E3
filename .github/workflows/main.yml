@@ -1,25 +1,37 @@
-name: Deploy SpotifyLike STS
+name: Build and deploy ASP.Net Core app to an Azure Web App
+
+env:
+  DOTNET_VERSION: '8'       
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
+
+permissions:
+  contents: read
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
+
     steps:
       - uses: actions/checkout@v4
 
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Set up dependency caching for faster builds
+        uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
       - name: Build with dotnet
-        run: dotnet build ./SpotifyLike.STS --configuration Release
+        run: dotnet build ./SpotifyLike.sts --configuration Release
 
-  
-    
-
+      - name: dotnet publish
+        run: dotnet publish ./SpotifyLike.sts -c Release -o ${{env.DOTNET_ROOT}}/myapp
