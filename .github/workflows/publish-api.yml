@@ -27,6 +27,8 @@ env:
 on:
   push:
     branches: [ "master" ]
+    paths:
+      -'SpotifyLike.Api/**'
   workflow_dispatch:
 
 permissions:
