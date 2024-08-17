@@ -31,7 +31,24 @@ jobs:
             ${{ runner.os }}-nuget-
 
       - name: Build with dotnet
-        run: dotnet build ./SpotifyLike.sts --configuration Release
+        run: dotnet build ./SpotifyLike.STS --configuration Release
+      
+      - name: Docker Login
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{secrets.REGISTRY_LOGIN_SERVER}}
+          username: ${{secrets.REGISTRY_USERNAME}}
+          password: ${{secrets.REGISTRY_PASSWORD}}
+      - name: Build image and push
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          file: SpotifyLike.STS/Dockerfile
+          context: .
+          tags: ${{secrets.REGISTRY_LOGIN_SERVER}}/spotify-sts:${{github.sha}}
+      
 
-      - name: dotnet publish
-        run: dotnet publish ./SpotifyLike.sts -c Release -o ${{env.DOTNET_ROOT}}/myapp
+      
+
+      
+
