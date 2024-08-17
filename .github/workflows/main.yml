@@ -6,6 +6,8 @@ env:
 on:
   push:
     branches: [ "master" ]
+    paths:
+      - SpotifyLike.STS/**
 
 permissions:
   contents: read
