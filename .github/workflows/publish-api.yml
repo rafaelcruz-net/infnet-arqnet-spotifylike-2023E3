@@ -28,7 +28,7 @@ on:
   push:
     branches: [ "master" ]
     paths:
-      -'SpotifyLike.Api/**'
+      - SpotifyLike.Api/**
   workflow_dispatch:
 
 permissions:
