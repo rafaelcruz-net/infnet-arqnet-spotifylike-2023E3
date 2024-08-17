@@ -3,8 +3,7 @@ name: Deploy SpotifyLike STS
 on:
   push:
     branches: [ "main" ]
-    paths:
-      - SpotifyLike.STS/**
+
 jobs:
   build-deploy-dotnet:
     runs-on: ubuntu-latest
