@@ -11,28 +11,28 @@ jobs:
       run:
         shell: bash
     steps:
-      - uses: actions/checkout@v4
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: 8.0.x
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
 
-      - name: Build 
-        run: dotnet build SpotifyLike.sln
-      - name: Docker Login
-        uses: azure/docker-login@v1
-        with:
-          login-server: ${{secrets.REGISTRY_LOGIN_SERVER}}
-          username: ${{secrets.REGISTRY_USERNAME}}
-          password: ${{secrets.REGISTRY_PASSWORD}}
+    - name: Build 
+      run: dotnet build SpotifyLike.sln
+    - name: Docker Login
+      uses: azure/docker-login@v1
+      with:
+        login-server: ${{secrets.REGISTRY_LOGIN_SERVER}}
+        username: ${{secrets.REGISTRY_USERNAME}}
+        password: ${{secrets.REGISTRY_PASSWORD}}
 
-      - name: Build image and push
-        uses: docker/build-push-action@v5
-        with:
-          push: true
-          tags: ${{secrets.REGISTRY_LOGIN_SERVER}}/spotify-sts:${{github.sha}}
-          file: SpotifyLike.STS/Dockerfile
-          context: .
+    - name: Build image and push
+      uses: docker/build-push-action@v5
+      with:
+        push: true
+        tags: ${{secrets.REGISTRY_LOGIN_SERVER}}/spotify-sts:${{github.sha}}
+        file: SpotifyLike.STS/Dockerfile
+        context: .
 
   
     
