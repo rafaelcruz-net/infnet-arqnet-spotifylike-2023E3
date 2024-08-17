@@ -1,4 +1,4 @@
-name: Build and deploy ASP.Net Core app to an Azure Web App
+name: Spotify STS Build
 
 env:
   DOTNET_VERSION: '8'       
