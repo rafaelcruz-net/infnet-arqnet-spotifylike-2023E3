@@ -4,6 +4,7 @@ using Microsoft.OpenApi.Models;
 using Spotify.Application.Conta;
 using Spotify.Application.Conta.Profile;
 using Spotify.Application.Streaming;
+using Spotify.Application.Streaming.Storage;
 using SpotifyLike.Repository;
 using SpotifyLike.Repository.Repository;
 
@@ -77,6 +78,7 @@ builder.Services.AddScoped<BandaRepository>();
 //Services
 builder.Services.AddScoped<UsuarioService>();
 builder.Services.AddScoped<BandaService>();
+builder.Services.AddScoped<AzureStorageAccount>();
 
 
 var app = builder.Build();

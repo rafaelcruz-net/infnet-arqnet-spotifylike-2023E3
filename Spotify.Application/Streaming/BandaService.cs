@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Spotify.Application.Streaming.Dto;
+using Spotify.Application.Streaming.Storage;
 using SpotifyLike.Domain.Streaming.Aggregates;
 using SpotifyLike.Repository.Repository;
 using System;
@@ -15,16 +16,24 @@ namespace Spotify.Application.Streaming
         private BandaRepository BandaRepository { get; set; }
         private IMapper Mapper { get; set; }
 
+        private AzureStorageAccount AzureStorageAccount { get; set; }
 
-        public BandaService(BandaRepository bandaRepository, IMapper mapper)
+
+        public BandaService(BandaRepository bandaRepository, IMapper mapper, AzureStorageAccount azureStorageAccount)
         {
             BandaRepository = bandaRepository;
             Mapper = mapper;
+            AzureStorageAccount = azureStorageAccount;
         }
 
         public async Task<BandaDto> Criar(BandaDto dto)
         {
             Banda banda = this.Mapper.Map<Banda>(dto);
+
+            var urlBackdrop = await this.AzureStorageAccount.UploadImage(dto.Backdrop);
+
+            banda.Backdrop = urlBackdrop;
+
             await this.BandaRepository.SaveOrUpate(banda, banda.BandaKey);
 
             return this.Mapper.Map<BandaDto>(banda);
