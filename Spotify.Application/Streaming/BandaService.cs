@@ -22,29 +22,29 @@ namespace Spotify.Application.Streaming
             Mapper = mapper;
         }
 
-        public BandaDto Criar(BandaDto dto)
+        public async Task<BandaDto> Criar(BandaDto dto)
         {
             Banda banda = this.Mapper.Map<Banda>(dto);
-            this.BandaRepository.Save(banda);
+            await this.BandaRepository.SaveOrUpate(banda, banda.BandaKey);
 
             return this.Mapper.Map<BandaDto>(banda);
         }
 
-        public BandaDto Obter(Guid id)
+        public async Task<BandaDto> Obter(Guid id)
         {
-            var banda = this.BandaRepository.GetById(id);
+            var banda =  await this.BandaRepository.ReadItem<Banda>(id.ToString());
             return this.Mapper.Map<BandaDto>(banda);
         }
 
-        public IEnumerable<BandaDto> Obter()
+        public async Task<IEnumerable<BandaDto>> Obter()
         {
-            var banda = this.BandaRepository.GetAll();
+            var banda = await this.BandaRepository.ReadAllItem<Banda>();
             return this.Mapper.Map<IEnumerable<BandaDto>>(banda);
         }
 
-        public AlbumDto AssociarAlbum(AlbumDto dto)
+        public async Task<AlbumDto> AssociarAlbum(AlbumDto dto)
         {
-            var banda = this.BandaRepository.GetById(dto.BandaId);
+            var banda = await this.BandaRepository.ReadItem<Banda>(dto.BandaId.ToString());
 
             if (banda == null)
             {
@@ -55,7 +55,7 @@ namespace Spotify.Application.Streaming
 
             banda.AdicionarAlbum(novoAlbum);
 
-            this.BandaRepository.Update(banda);
+            await this.BandaRepository.SaveOrUpate<Banda>(banda, banda.BandaKey);
 
             var result = this.AlbumParaAlbumDto(novoAlbum);
 
@@ -63,9 +63,9 @@ namespace Spotify.Application.Streaming
 
         }
 
-        public AlbumDto ObterAlbumPorId(Guid idBanda, Guid id)
+        public async Task<AlbumDto> ObterAlbumPorId(Guid idBanda, Guid id)
         {
-            var banda = this.BandaRepository.GetById(idBanda);
+            var banda = await this.BandaRepository.ReadItem<Banda>(idBanda.ToString());
 
             if (banda == null)
             {
@@ -83,9 +83,9 @@ namespace Spotify.Application.Streaming
 
         }
 
-        public List<AlbumDto> ObterAlbum(Guid idBanda)
+        public async Task<List<AlbumDto>> ObterAlbum(Guid idBanda)
         {
-            var banda = this.BandaRepository.GetById(idBanda);
+            var banda = await this.BandaRepository.ReadItem<Banda>(idBanda.ToString());
 
             if (banda == null)
             {
@@ -107,6 +107,7 @@ namespace Spotify.Application.Streaming
         {
             Album album = new Album()
             {
+                Id = dto.Id,
                 Nome = dto.Nome
             };
 
@@ -114,6 +115,7 @@ namespace Spotify.Application.Streaming
             {
                 album.AdicionarMusica(new Musica
                 {
+                    Id = item.Id,
                     Nome = item.Nome,
                     Duracao = new SpotifyLike.Domain.Streaming.ValueObject.Duracao(item.Duracao)
                 });

@@ -21,17 +21,17 @@ namespace SpotifyLike.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetBandas()
+        public async Task<IActionResult> GetBandas()
         {
-            var result = this._bandaService.Obter();
+            var result = await this._bandaService.Obter();
 
             return Ok(result);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetBandas(Guid id)
+        public async Task<IActionResult> GetBandas(Guid id)
         {
-            var result = this._bandaService.Obter(id);
+            var result = await this._bandaService.Obter(id);
 
             if (result == null)
             {
@@ -42,23 +42,23 @@ namespace SpotifyLike.Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult Criar([FromBody] BandaDto dto)
+        public async Task<IActionResult> Criar([FromBody] BandaDto dto)
         {
             if (ModelState is { IsValid: false })
                 return BadRequest();
 
-            var result = this._bandaService.Criar(dto);
+            var result = await this._bandaService.Criar(dto);
 
             return Created($"/banda/{result.Id}", result);
         }
 
         [HttpPost("{id}/albums")]
-        public IActionResult AssociarAlbum(AlbumDto dto)
+        public async Task<IActionResult> AssociarAlbum(AlbumDto dto)
         {
             if (ModelState is { IsValid: false })
                 return BadRequest();
 
-            var result = this._bandaService.AssociarAlbum(dto);
+            var result = await this._bandaService.AssociarAlbum(dto);
 
             return Created($"/banda/{result.BandaId}/albums/{result.Id}", result);
 
@@ -66,9 +66,9 @@ namespace SpotifyLike.Api.Controllers
 
 
         [HttpGet("{idBanda}/albums/{id}")]
-        public IActionResult ObterAlbumPorId(Guid idBanda, Guid id) 
+        public async Task<IActionResult> ObterAlbumPorId(Guid idBanda, Guid id) 
         { 
-            var result = this._bandaService.ObterAlbumPorId(idBanda, id);
+            var result = await this._bandaService.ObterAlbumPorId(idBanda, id);
 
             if (result == null) 
                 return NotFound();
@@ -78,9 +78,9 @@ namespace SpotifyLike.Api.Controllers
         }
 
         [HttpGet("{idBanda}/albums")]
-        public IActionResult ObterAlbuns(Guid idBanda)
+        public async Task<IActionResult> ObterAlbuns(Guid idBanda)
         {
-            var result = this._bandaService.ObterAlbum(idBanda);
+            var result = await this._bandaService.ObterAlbum(idBanda);
 
             if (result == null)
                 return NotFound();

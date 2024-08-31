@@ -20,7 +20,7 @@ namespace SpotifyLike.Repository.Mapping.Streaming
             builder.Property(x => x.Nome).IsRequired().HasMaxLength(250);
             builder.Property(x => x.Descricao).IsRequired().HasMaxLength(500);
             builder.Property(x => x.Backdrop).IsRequired().HasMaxLength(500);
-            builder.HasMany<Album>(x => x.Albums).WithOne().OnDelete(DeleteBehavior.Cascade);
+            ///builder.HasMany<Album>(x => x.Albums).WithOne().OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
