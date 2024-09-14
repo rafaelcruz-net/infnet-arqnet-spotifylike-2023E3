@@ -1,0 +1,15 @@
+{
+  "version": "2.0",
+  "logging": {
+    "applicationInsights": {
+      "samplingSettings": {
+        "isEnabled": true,
+        "excludedTypes": "Request"
+      },
+      "enableLiveMetricsFilters": true
+    }
+  },
+  "ServicebusConnectionString": "Endpoint=sb://spotify-notification.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=udP9Udw3ZE64YMRUUQmXO5CoPU5NwNR5n+ASbLrImWs="
+
+
+}

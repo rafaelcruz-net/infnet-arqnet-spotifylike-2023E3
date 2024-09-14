@@ -28,7 +28,7 @@ namespace SpotifyLike.Domain.Streaming.Aggregates
 
         
         [JsonProperty("albuns")]
-        public IList<Album> Albums { get; set; } = new List<Album>();
+        public virtual IList<Album> Albums { get; set; } = new List<Album>();
 
         public void AdicionarAlbum(Album album) =>
             this.Albums.Add(album);
